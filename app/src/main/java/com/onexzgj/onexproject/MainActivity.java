@@ -32,5 +32,6 @@ public class MainActivity extends BaseActivity {
     @OnClick(R.id.tv_show)
     public void onViewClicked() {
         Toast.makeText(this, "tvShow", Toast.LENGTH_SHORT).show();
+        startActivity(MvpActivity.class);
     }
 }

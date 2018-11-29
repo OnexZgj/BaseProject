@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 
+import com.blankj.utilcode.util.Utils;
+
 
 /**
  * Created by OnexZgj on 2017/9/1.
@@ -28,6 +30,7 @@ public class GlobalApplication extends Application {
         context = getApplicationContext();
         handler = new Handler();
         mainThreadId = android.os.Process.myTid();
+        Utils.init(this);
 //        Logger.init(LOG_TAG).logLevel(BuildConfig.IS_SHOW_LOG ? LogLevel.FULL : LogLevel.NONE);
     }
 
