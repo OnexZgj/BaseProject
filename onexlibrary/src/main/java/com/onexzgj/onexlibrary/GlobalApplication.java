@@ -6,7 +6,7 @@ import android.os.Handler;
 
 
 /**
- * Created by Horrarndoo on 2017/9/1.
+ * Created by OnexZgj on 2017/9/1.
  * <p>
  * 全局Application
  */

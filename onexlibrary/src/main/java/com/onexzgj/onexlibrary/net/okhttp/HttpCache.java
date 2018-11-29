@@ -1,13 +1,14 @@
 package com.onexzgj.onexlibrary.net.okhttp;
 
-import com.zyw.horrarndoo.sdk.utils.AppUtils;
+
+import com.onexzgj.onexlibrary.utils.AppUtils;
 
 import java.io.File;
 
 import okhttp3.Cache;
 
 /**
- * Created by Horrarndoo on 2017/9/12.
+ * Created by OnexZgj on 2017/9/12.
  * <p>
  */
 public class HttpCache {

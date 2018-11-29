@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.blankj.utilcode.util.BarUtils;
-
 import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -25,7 +23,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             setContentView(getLayoutId());
             ButterKnife.bind(this);
         }
-        BarUtils.setStatusBarAlpha(this);
+//        BarUtils.setStatusBarAlpha(this);
         //初始化
         initView();
         initData();

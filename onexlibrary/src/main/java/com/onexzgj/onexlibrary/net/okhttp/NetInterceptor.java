@@ -1,7 +1,7 @@
 package com.onexzgj.onexlibrary.net.okhttp;
 
-import com.zyw.horrarndoo.sdk.utils.AppUtils;
-import com.zyw.horrarndoo.sdk.utils.NetworkConnectionUtils;
+
+import com.blankj.utilcode.util.NetworkUtils;
 
 import java.io.IOException;
 
@@ -9,7 +9,8 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import static com.zyw.horrarndoo.sdk.utils.HttpUtils.getUserAgent;
+import static com.onexzgj.onexlibrary.utils.HttpUtils.getUserAgent;
+
 
 /**
  * Created by Horrarndoo on 2017/9/18.
@@ -24,7 +25,7 @@ public class NetInterceptor implements Interceptor {
         int maxAge = 60;
         Request request = chain.request();
 
-        if (NetworkConnectionUtils.isNetworkConnected(AppUtils.getContext())) {
+        if (NetworkUtils.isConnected()) {
             request = request.newBuilder()
                     .removeHeader("User-Agent")
                     .header("User-Agent", getUserAgent())
