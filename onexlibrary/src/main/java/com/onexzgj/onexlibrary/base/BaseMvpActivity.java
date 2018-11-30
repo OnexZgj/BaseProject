@@ -20,6 +20,7 @@ public abstract class BaseMvpActivity<T extends  BaseContract.BasePresenter> ext
     protected Application mApplication;
 
     protected Context mContext;
+    private int mColor;
 
     protected T mPresenter;
     private ProgressDialog mProgressDialog;
@@ -32,7 +33,9 @@ public abstract class BaseMvpActivity<T extends  BaseContract.BasePresenter> ext
             setContentView(getLayoutId());
             unBinder = ButterKnife.bind(this);
         }
-        BarUtils.setStatusBarAlpha(this);
+//        BarUtils.setStatusBarAlpha(this);
+        mColor=0xff0000;
+        BarUtils.setStatusBarColor(this,mColor);
 
         mPresenter = (T) initPresenter();
 

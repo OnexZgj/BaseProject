@@ -2,6 +2,7 @@ package com.onexzgj.onexproject;
 
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.BarUtils;
 import com.onexzgj.onexlibrary.base.BaseContract;
 import com.onexzgj.onexlibrary.base.BaseMvpActivity;
 
@@ -21,7 +22,7 @@ public class MvpActivity extends BaseMvpActivity {
 
     @Override
     protected void initView() {
-
+        BarUtils.addMarginTopEqualStatusBarHeight(tvAmMvp);
     }
 
     @Override

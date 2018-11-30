@@ -3,6 +3,7 @@ package com.onexzgj.onexproject;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.BarUtils;
 import com.onexzgj.onexlibrary.base.BaseActivity;
 
 import butterknife.BindView;
@@ -13,6 +14,7 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.tv_show)
     TextView tvShow;
 
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
@@ -20,6 +22,10 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+
+        BarUtils.setStatusBarAlpha(this,80);
+
+        BarUtils.addMarginTopEqualStatusBarHeight(tvShow);// 其实这个只需要调用一次即可
 
     }
 

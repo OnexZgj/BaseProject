@@ -25,8 +25,8 @@ public abstract class BaseActivity extends AppCompatActivity {
             setContentView(getLayoutId());
             ButterKnife.bind(this);
         }
-        //250全是黑色
-        BarUtils.setStatusBarAlpha(this,80);
+        BarUtils.hideNotificationBar(this);
+        BarUtils.hideNavBar(this);
         //初始化
         initView();
         initData();
