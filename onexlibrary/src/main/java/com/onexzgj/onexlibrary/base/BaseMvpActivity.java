@@ -1,8 +1,10 @@
 package com.onexzgj.onexlibrary.base;
 
+import android.app.Activity;
 import android.app.Application;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.blankj.utilcode.util.BarUtils;
@@ -34,8 +36,9 @@ public abstract class BaseMvpActivity<T extends  BaseContract.BasePresenter> ext
             unBinder = ButterKnife.bind(this);
         }
 //        BarUtils.setStatusBarAlpha(this);
-        mColor=0xff0000;
-        BarUtils.setStatusBarColor(this,mColor);
+        BarUtils.setStatusBarAlpha(this,0);
+//        mColor=0xff0000;
+//        BarUtils.setStatusBarColor(this,mColor);
 
         mPresenter = (T) initPresenter();
 
@@ -102,6 +105,11 @@ public abstract class BaseMvpActivity<T extends  BaseContract.BasePresenter> ext
     }
 
 
+
+    /** 跳转指定的activity */
+    public void startActivity( Class<? extends Activity> cls){
+        startActivity(new Intent(this,cls));
+    }
 
 
 

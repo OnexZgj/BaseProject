@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.onexzgj.onexproject.activity.SplashActivity">
+    tools:context="com.onexzgj.onexproject.ui.SplashActivity">
 
 
     <ImageView
@@ -31,12 +31,13 @@
 
         <TextView
             android:id="@+id/tv_as_show"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_40"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/space_200"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:textSize="18sp"
+            android:textSize="@dimen/font_size_60px"
+            android:textColor="@color/white"
             android:text="Onex Project"/>
 
 

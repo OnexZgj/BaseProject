@@ -1,15 +1,18 @@
-package com.onexzgj.onexproject.activity;
+package com.onexzgj.onexproject.ui;
 
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.BarUtils;
+import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.ScreenUtils;
 import com.onexzgj.onexlibrary.base.BaseActivity;
 import com.onexzgj.onexproject.R;
+import com.onexzgj.onexproject.ui.activity.advertis.AdvertisingActivity;
 
 import butterknife.BindView;
 
@@ -19,7 +22,7 @@ import butterknife.BindView;
 public class SplashActivity extends BaseActivity implements Animation.AnimationListener {
 
 
-    private static final int ANIM_TIME = 1000;
+    private static final int ANIM_TIME = 500;
 
     @BindView(R.id.tv_as_show)
     TextView tvAsShow;
@@ -27,6 +30,7 @@ public class SplashActivity extends BaseActivity implements Animation.AnimationL
     ImageView ivAsBg;
     @BindView(R.id.iv_as_icon)
     ImageView ivAsIcon;
+    private int mScreenHeight;
 
 
     @Override
@@ -38,15 +42,8 @@ public class SplashActivity extends BaseActivity implements Animation.AnimationL
     @Override
     protected void initView() {
         BarUtils.setStatusBarAlpha(this,0);
+        mScreenHeight = ScreenUtils.getScreenHeight();
         initStartAnim();
-//        //设置状态栏和导航栏参数
-//        getStatusBarConfig()
-//                .fullScreen(true)//有导航栏的情况下，activity全屏显示，也就是activity最下面被导航栏覆盖，不写默认非全屏
-//                .hideBar(BarHide.FLAG_HIDE_STATUS_BAR)//隐藏状态栏
-//                .transparentNavigationBar()//透明导航栏，不写默认黑色(设置此方法，fullScreen()方法自动为true)
-//                .init();
-
-
 
     }
 
@@ -65,9 +62,11 @@ public class SplashActivity extends BaseActivity implements Animation.AnimationL
         sa.setDuration(ANIM_TIME);
         ivAsIcon.startAnimation(sa);
 
-        RotateAnimation ra = new RotateAnimation(180, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        ra.setDuration(ANIM_TIME);
-        tvAsShow.startAnimation(ra);
+        LogUtils.w(mScreenHeight);
+        TranslateAnimation ta=new TranslateAnimation(0,0,100,0);
+        ta.setDuration(ANIM_TIME);
+
+        tvAsShow.startAnimation(ta);
     }
 
 
@@ -83,7 +82,8 @@ public class SplashActivity extends BaseActivity implements Animation.AnimationL
 
     @Override
     public void onAnimationEnd(Animation animation) {
-
+        startActivity(AdvertisingActivity.class);
+        finish();
     }
 
     @Override
