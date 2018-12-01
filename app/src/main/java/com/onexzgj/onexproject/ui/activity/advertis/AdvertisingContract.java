@@ -9,8 +9,11 @@ import com.onexzgj.onexlibrary.base.BaseContract;
 public interface AdvertisingContract {
 
     interface View extends BaseContract.BaseView{
-        /** 展示广告图片 */
-        void showAdvertisingPic();
+        /** 展示广告图片
+         * @param imageUrl 图片地址
+         * @param desc 图片描述
+         */
+        void showAdvertisingPic(String imageUrl,String desc);
     }
 
     interface Presenter extends BaseContract.BasePresenter<View>{

@@ -1,5 +1,7 @@
 package com.onexzgj.onexlibrary.base;
 
+import com.trello.rxlifecycle2.LifecycleTransformer;
+
 /**
  * desc: basemvp contract
  * author: OnexZgj .
@@ -32,6 +34,14 @@ public interface BaseContract {
 
         //重试
         void onRetry();
+
+        /**
+         * 绑定生命周期
+         *
+         * @param <T>
+         * @return
+         */
+        <T> LifecycleTransformer<T> bindToLife();
 
     }
 }

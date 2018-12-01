@@ -31,7 +31,8 @@
             android:layout_marginTop="35dp"
             android:background="@drawable/shape_count_down_bg"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="invisible">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -49,7 +50,7 @@
                 android:gravity="center"
                 android:paddingLeft="3dp"
                 android:paddingRight="3dp"
-                android:text="3"
+                android:text="4"
                 android:textColor="@color/white"
                 android:textSize="16sp"/>
         </LinearLayout>

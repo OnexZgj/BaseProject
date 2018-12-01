@@ -1,10 +1,17 @@
 package com.onexzgj.onexproject.ui.activity.advertis;
 
+import android.graphics.drawable.Drawable;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.onexzgj.onexlibrary.base.BaseContract;
 import com.onexzgj.onexlibrary.base.BaseMvpActivity;
 import com.onexzgj.onexlibrary.utils.RxHelper;
@@ -38,11 +45,6 @@ public class AdvertisingActivity extends BaseMvpActivity<AdvertisPresenterImp> i
     /** 是否取消加载广告 */
     private boolean mIsCancle = false;
 
-    @Override
-    public void showAdvertisingPic() {
-
-
-    }
 
     @Override
     public void onRetry() {
@@ -51,17 +53,17 @@ public class AdvertisingActivity extends BaseMvpActivity<AdvertisPresenterImp> i
 
     @Override
     protected BaseContract.BasePresenter initPresenter() {
-        return null;
+        return new AdvertisPresenterImp(this);
     }
 
     @Override
     protected void initView() {
-        initCountDown();
+
     }
 
     @Override
     protected void initData() {
-
+        mPresenter.getAdvertisingPic();
     }
 
     @Override
@@ -72,7 +74,7 @@ public class AdvertisingActivity extends BaseMvpActivity<AdvertisPresenterImp> i
 
     private void initCountDown() {
         Observable.interval(1, TimeUnit.SECONDS)
-                .take(3)//计时次数
+                .take(4)//计时次数
                 .map(new Function<Long, Long>() {
                     @Override
                     public Long apply(Long aLong) throws Exception {
@@ -122,5 +124,24 @@ public class AdvertisingActivity extends BaseMvpActivity<AdvertisPresenterImp> i
 
                 break;
         }
+    }
+
+    @Override
+    public void showAdvertisingPic(String imageUrl, String desc) {
+        Glide.with(this).load(imageUrl).listener(new RequestListener<Drawable>() {
+            @Override
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                llSkip.setVisibility(View.VISIBLE);
+                initCountDown();
+                return false;
+            }
+        }).into(ivAaAdvertising);
+        tvAaAdvertisingTitle.setText("Onex Project " +desc );
+
     }
 }
