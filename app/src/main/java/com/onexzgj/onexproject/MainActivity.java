@@ -23,7 +23,9 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initView() {
 
-        BarUtils.setStatusBarAlpha(this,80);
+
+        BarUtils.setStatusBarColor(this,getResources().getColor(R.color.colorPrimary),80);
+//        BarUtils.setStatusBarAlpha(this,80);
 
         BarUtils.addMarginTopEqualStatusBarHeight(tvShow);// 其实这个只需要调用一次即可
 

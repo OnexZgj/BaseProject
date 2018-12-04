@@ -26,7 +26,7 @@ public abstract class BaseMvpActivity<T extends BaseContract.BasePresenter> exte
     private int mColor;
 
     protected T mPresenter;
-    private ProgressDialog mProgressDialog;
+    public ProgressDialog mProgressDialog;
 
 
     @Override
@@ -40,7 +40,9 @@ public abstract class BaseMvpActivity<T extends BaseContract.BasePresenter> exte
         BarUtils.setStatusBarAlpha(this, 0);
 //        mColor=0xff0000;
 //        BarUtils.setStatusBarColor(this,mColor);
-        mProgressDialog = new ProgressDialog(this, 0);
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this, 0);
+        }
         mPresenter = (T) initPresenter();
 
         attachView();
@@ -66,6 +68,9 @@ public abstract class BaseMvpActivity<T extends BaseContract.BasePresenter> exte
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (mProgressDialog!=null){
+            mProgressDialog.dismiss();
+        }
         unBinder.unbind();
         if (mPresenter != null)
             mPresenter.detachView();
@@ -79,16 +84,18 @@ public abstract class BaseMvpActivity<T extends BaseContract.BasePresenter> exte
 
     @Override
     public void showLoading(String msg) {
-        mProgressDialog.setMessage(msg);
-        mProgressDialog.setCanceledOnTouchOutside(true);
-        mProgressDialog.show();
+        if (!mProgressDialog.isShowing()) {
+            mProgressDialog.setMessage(msg);
+            mProgressDialog.setCanceledOnTouchOutside(true);
+            mProgressDialog.show();
+        }
     }
 
 
     @Override
     public void hideLoading() {
         if (mProgressDialog != null)
-            mProgressDialog.hide();
+            mProgressDialog.dismiss();
     }
 
 

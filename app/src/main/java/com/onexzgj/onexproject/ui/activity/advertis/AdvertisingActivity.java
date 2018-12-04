@@ -114,7 +114,11 @@ public class AdvertisingActivity extends BaseMvpActivity<AdvertisPresenterImp> i
             case R.id.ll_skip:
                 //跳过广告，直接进入MainActivity
                 mIsCancle=true;
+                hideLoading();
                 startActivity(MainActivity.class);
+                if (mProgressDialog!=null){
+                    mProgressDialog.dismiss();
+                }
                 finish();
 
                 break;
@@ -144,4 +148,7 @@ public class AdvertisingActivity extends BaseMvpActivity<AdvertisPresenterImp> i
         tvAaAdvertisingTitle.setText("Onex Project " +desc );
 
     }
+
+
+
 }

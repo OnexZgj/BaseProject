@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.advertis.AdvertisingActivity" />
-        <activity android:name=".ui.activity.home.HomeActivity"></activity>
+        <activity android:name=".ui.activity.home.HomeActivity" />
     </application>
 
 </manifest>

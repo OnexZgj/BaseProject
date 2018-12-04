@@ -3,8 +3,10 @@ package com.onexzgj.onexlibrary.base;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import com.blankj.utilcode.util.BarUtils;
 
@@ -16,6 +18,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 全局application
      */
     public Application mApplication;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +28,40 @@ public abstract class BaseActivity extends AppCompatActivity {
             setContentView(getLayoutId());
             ButterKnife.bind(this);
         }
+
+
         BarUtils.hideNotificationBar(this);
         BarUtils.hideNavBar(this);
         //初始化
         initView();
         initData();
 
+    }
+
+    /**
+     * 初始化Toolbar
+     */
+    private void initToolBar(int toolBarId) {
+        mToolbar = (Toolbar) findViewById(toolBarId);
+        if (mToolbar == null) {
+            throw new NullPointerException("toolbar can not be null");
+        }
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(showHomeAsUp());
+        /**toolbar除掉阴影*/
+        getSupportActionBar().setElevation(0);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mToolbar.setElevation(0);
+        }
+    }
+
+    /**
+     * 是否显示返回键
+     *
+     * @return
+     */
+    protected boolean showHomeAsUp() {
+        return false;
     }
 
     protected abstract int getLayoutId();
